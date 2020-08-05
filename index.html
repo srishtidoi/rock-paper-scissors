@@ -7,29 +7,112 @@
   </head>
   <body>
     <script>
+      function game() { // begins an n-round game
+	  let nrounds = +prompt("How many rounds do you want to play?");
+	  console.log("Let's begin!");
+	  let i;
+	  let playerscore = 0;
+	  let computerscore = 0;
+	  for (i=1; i< nrounds+1 ; i++) {
+	      console.log(`Round ${i}`);
+	      let playerSelection = prompt("Your move");
+	      let computerMove = computerPlay();
+	      let won = playRound(playerSelection, computerMove);
+	      if (won == 'player') playerscore++;
+	      else if (won == 'computer') computerscore++;
+	      console.log(`The score is:
+you ${playerscore}
+computer ${computerscore}`)
+	  }
+	  let msg = (playerscore>computerscore)?"Yay! You won the game":"Oof! You lost the game haha whata loser";
+	  console.log(msg);
+      }
+
       function randint(min, max) {
 	  // returns a random integer between min and max (both included)
 	  return Math.floor(Math.random()*(max-min+1)) + min;
       }
-      
+
       function computerPlay() {
 	  // produces a random move (rock, paper or scissors)
-	  let playnum = randint(1,3);
-	  let play;
-	  switch (playnum) {
-	  case 1:
-	      play = 'rock';
+	  let playcode = randint(1,3);
+	  // playcode: 1-rock 2-paper 3-scissors
+	  return playcode;
+      }
+
+      function winner(playerMove, computerMove) {
+	  let play = playerMove + computerMove
+	  let winner;
+	  if (play == 3) { // rock-paper
+	      winner = (playerMove == 2)? 'player' : 'computer';
+	  }
+	  else if (play == 4) { // rock-scissors
+	      winner = (playerMove == 1)? 'player' : 'computer';
+	  }
+	  else if (play == 5) { // scissors-paper
+	      winner = (playerMove == 3)? 'player' : 'computer';
+	  }
+	  return winner;
+      }
+      function playRound(playerSelection, computerMove, playerscore, computerscore) {
+	  // convert to lowercase
+	  playerSelection = playerSelection.toLowerCase();
+	  // convert playerSelection to playcode and computerSelection to play
+	  // Move = code; Selection = string
+	  let playerMove = playCode(playerSelection);
+	  let computerSelection = play(computerMove);
+	  let win; 
+	  let msg;
+	  // in case of a draw	  
+	  if (playerMove == computerMove) {
+	      msg = "It's a draw!";
+	      win = 'none';
+	  } else {
+	      // determine winner
+	      win = winner(playerMove, computerMove);
+	      // return message
+	      if (win == 'player') {
+		  msg = `You win :) ${playerSelection} beats ${computerSelection}`;
+	      }
+	      else if (win == 'computer') {
+		  msg = `You lose :( ${computerSelection} beats ${playerSelection}`;
+	      }
+	      
+	  }
+	  console.log(msg);
+	  return win;
+      }
+      
+      function playCode(play) {
+	  let playcode;
+	  switch (play) {
+	  case 'rock':
+	      playcode = 1;
 	      break;
-	  case 2:
-	      play = 'paper';
+	  case 'paper':
+	      playcode = 2;
 	      break;
-	  case 3:
-	      play = 'scissors';
+	  case 'scissors':
+	      playcode = 3;
 	      break;
 	  }
-	  return play;
+	  return playcode;
       }
-            
+      function play(playcode) {
+	  let play;
+	  switch (playcode) {
+	  case 1:
+	      playcode = 'rock';
+	      break;
+	  case 2:
+	      playcode = 'paper';
+	      break;
+	  case 3:
+	      playcode = 'scissors';
+	      break;
+	  }
+	  return playcode;
+      }
     </script>
   </body>
 </html>
