@@ -1,0 +1,30 @@
+/* home page */
+
+html {
+    background-size: cover;
+    background: #00171F;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#start-game {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+    Background: #FFB400;
+    padding: 1em 2em;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: xx-large;
+    color: #25262C;
+    border-radius: 20px;
+    border: 0px;
+}
+
+button:hover {
+    transform: scale(1.1);
+}

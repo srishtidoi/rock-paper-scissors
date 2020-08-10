@@ -1,0 +1,123 @@
+/* game page */
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+#player-side {
+    Background: #F15946;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: column;
+    width: 50%;
+    height: 100vh;
+    
+}
+
+#computer-side {
+    width: 50%;
+    height: 100vh;
+    display: flex;
+    Background: #53B3CB;
+}
+
+button {
+    margin: 0 1em 1em 1em;
+    height: 2.5em;
+    width: 7em;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: larger;
+    Background: #F9C846;
+    color: #00171F;
+    border: 0px;
+    border-radius: 10px;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+.player-choice {
+    box-shadow: 0 0 0 5px #E3EDBF;
+}
+
+#buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 0vh;
+    
+}
+
+footer {
+    padding: 2em 0;
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    align-items: center;
+    width: 50vw;
+}
+
+#computer-side footer {
+    align-self: flex-end;
+    padding-left: 2em ;
+}
+
+#player-side footer {
+    align-self: flex-end;
+    justify-content: flex-end;
+    padding-right: 2em;
+}
+
+.score {
+    margin: 0 2em 0 2em;
+    font-weight: 900;
+    font-size: x-large;
+}
+
+#player-footer .score {
+    margin-left: 4em;
+}
+
+.popup {
+    visibility: hidden;
+    width: 100vw;
+    height: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0,0,0,0.7);
+    text-align: center;
+    position: absolute;
+    z-index: 1;
+    
+}
+
+.show {
+    visibility: visible;
+}
+
+.popup div {
+    height: 40vh;
+    width: 40vw;
+    box-shadow: 0 0 0 7px #E3EDBF;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 30px;
+    Background: #F49D37;
+}
+#newgame {
+    opacity: 100%;
+    align-self: center;
+    margin: 2em 0;
+    Background: #F49D37;
+    cursor: pointer;
+}
+
+.message {
+    
+}
