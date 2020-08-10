@@ -111,8 +111,8 @@ function playRound(playerMove) {
 
     window.setTimeout(updatescore, 1000);
 
-    /* end game when either player reaches a score of 3 */
-    if (playerscore == 3 || computerscore == 3) {
+    /* end game when either player reaches a score of 5 */
+    if (playerscore == 5 || computerscore == 5) {
 	window.setTimeout(endgame, 1500);
 	return;
     }
