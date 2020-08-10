@@ -25,6 +25,10 @@ newgame.onclick = function() {
 }
 message.classList.add("message");
 
+/* round number */
+let round = 0;
+const roundcard = document.querySelector("#round-number");
+
 /* initial scores */
 let playerscore = 0;
 let computerscore = 0;
@@ -48,6 +52,7 @@ function endgame() {
 }
 
 function playRound(playerMove) {
+    updateround();
     let computerMove = computerPlay();
     let win; // winner of this round
 
@@ -71,6 +76,12 @@ function playRound(playerMove) {
 	endgame();
 	return;
     }
+}
+
+function updateround() {
+    round++;
+    roundcard.innerHTML = `Round ${round}`;
+    console.log(round);
 }
 
 function updatescore() {
