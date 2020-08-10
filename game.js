@@ -1,7 +1,9 @@
+/* selecting the buttons */
 const rock = document.querySelector("#rock");
 const paper = document.querySelector("#paper");
 const scissors = document.querySelector("#scissors");
 
+/* adding scores to the footers */
 const playerside = document.querySelector("#player-footer");
 const computerside = document.querySelector("#computer-footer"); 
 const pscore = document.createElement("div");
@@ -14,6 +16,7 @@ cscore.classList.add("score");
 computerside.appendChild(cscore);
 playerside.insertBefore(pscore, you);
 
+/* new game popup at the end of the game */
 const popup = document.querySelector(".popup");
 const newgame = document.querySelector("#newgame");
 const message = document.querySelector("#msg");
@@ -21,15 +24,13 @@ newgame.onclick = function() {
     window.location.reload();
 }
 message.classList.add("message");
-//newgame.innerHTML = "new game";
-//popup.classList.add("popup");
-//popup.appendChild(newgame);
-//body.appendChild(popup);
 
+/* initial scores */
 let playerscore = 0;
 let computerscore = 0;
-updatescore();
+updatescore(); // adding to the scoreboard
 
+/* calling the playRound function on button click */
 rock.addEventListener("click", function() {
     playRound(1);
 });
@@ -42,51 +43,41 @@ scissors.addEventListener("click", function() {
 
 function endgame() {
     let msg = (playerscore>computerscore)?"Yay! You won the game":"Oof! You lost the game haha whata loser";
-    console.log(msg);
     message.innerHTML = msg;
-    popup.classList.add("show");
-    
+    popup.classList.add("show"); // making the new game popup visible
 }
 
 function playRound(playerMove) {
-
     let computerMove = computerPlay();
-    let win;
-    let msg;
-    // in case of a draw	  
+    let win; // winner of this round
+
+    /* in case of a draw */
     if (playerMove === computerMove) {
-	msg = "It's a draw!";
 	win = 'none';
     } else {
-	// determine winner
 	win = winner(playerMove, computerMove);
-	// return message
 	if (win == 'player') {
-	    msg = `You win :)`;
 	    playerscore++;
 	}
 	else if (win == 'computer') {
-	    msg = `You lose :(`;
 	    computerscore++;
 	}
 	
     }
-    console.log(msg);
-    console.log(computerscore);
-    console.log(playerscore);
     updatescore();
-    //return win;
+
+    /* end game when either player reaches a score of 3 */
     if (playerscore == 3 || computerscore == 3) {
 	endgame();
 	return;
     }
 }
 
-
 function updatescore() {
     pscore.textContent = playerscore;
     cscore.textContent = computerscore;
 }
+
 function winner(playerMove, computerMove) {
     let play = playerMove + computerMove
     let winner;
@@ -102,6 +93,7 @@ function winner(playerMove, computerMove) {
     return winner;
 }
 
+/* funtion to convert string to playcode (1-rock 2-paper 3-scissors) */
 function playCode(play) {
     let playcode;
     switch (play) {
@@ -117,26 +109,26 @@ function playCode(play) {
     }
     return playcode;
 }
+
+/* function to convert code to string */
 function play(playcode) {
     let play;
     switch (playcode) {
     case 1:
-	playcode = 'rock';
+	play = 'rock';
 	break;
     case 2:
-	playcode = 'paper';
+	play = 'paper';
 	break;
     case 3:
-	playcode = 'scissors';
+	play = 'scissors';
 	break;
     }
-    return playcode;
+    return play;
 }
 
-
+/* funciton to make a random move (rock, paper or scissors) */
 function computerPlay() {
-    // produces a random move (rock, paper or scissors)
     let playcode = Math.floor(Math.random()*(3) + 1);
-    // playcode: 1-rock 2-paper 3-scissors
     return playcode;
 }
