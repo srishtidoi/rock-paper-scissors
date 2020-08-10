@@ -10,7 +10,6 @@ const computerside = document.querySelector(".computer-side");
 /* for hand images */
 const computerhand = document.querySelector(".computer-hand")   ;
 const playerhand = document.querySelector(".player-hand");
-console.log(computerhand);
 
 /* adding scores to the footers */
 const playerfooter = document.querySelector("#player-footer");
@@ -104,7 +103,11 @@ function playRound(playerMove) {
 	}
 	
     }
-    updatescore();
+
+    const phandimg = document.querySelector('.player-hand img');
+    const chandimg = document.querySelector('.computer-hand img');
+
+    window.setTimeout(updatescore, 1000);
 
     /* end game when either player reaches a score of 3 */
     if (playerscore == 3 || computerscore == 3) {
