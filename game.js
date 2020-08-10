@@ -31,7 +31,7 @@ const message = document.querySelector("#msg");
 newgame.onclick = function() {
     window.location.reload();
 }
-message.classList.add("message");
+
 
 /* round number */
 let round = 0;
@@ -72,8 +72,10 @@ scissors.addEventListener("click", function() {
 });
 
 function endgame() {
-    let msg = (playerscore>computerscore)?"Yay! You won the game":"Oof! You lost the game haha whata loser";
+    let msg = (playerscore>computerscore)?"Yay you won!":"Oof you lost :(";
     message.innerHTML = msg;
+    let nties = round - playerscore - computerscore;
+    stats.innerHTML = `<li>Rounds Won: ${playerscore}</li><li>Rounds Lost: ${computerscore}</li><li>Number of Ties: ${nties}</li>`;
     popup.classList.add("show"); // making the new game popup visible
 }
 
