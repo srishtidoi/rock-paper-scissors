@@ -7,7 +7,7 @@ body {
     font-family: 'Noto Sans JP', sans-serif;
 }
 
-#player-side {
+.player-side {
     Background: #F15946;
     display: flex;
     justify-content: flex-end;
@@ -15,14 +15,24 @@ body {
     flex-direction: column;
     width: 50%;
     height: 100vh;
+    transition: all 0.07s ease;
 }
 
-#computer-side {
+.computer-side {
     width: 50%;
     height: 100vh;
     display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
     Background: #53B3CB;
+    transition: all 0.1s ease;
 }
+
+/* .player-side.winner { */
+/*     Background: #F47867; */
+/*     transition: all 0.1s ease; */
+/* } */
+
 
 button {
     margin: 0 1em 1em 1em;
@@ -59,12 +69,11 @@ footer {
     width: 50vw;
 }
 
-#computer-side footer {
-    align-self: flex-end;
+.computer-side footer {
     padding-left: 2em ;
 }
 
-#player-side footer {
+.player-side footer {
     align-self: flex-end;
     justify-content: flex-end;
     padding-right: 2em;
@@ -144,4 +153,59 @@ footer {
     top: 0;
     right: 50vw
     z-index: 2;
+}
+
+img {
+    transform: scaleX(-1);
+    width: 40vw;
+    height: auto;
+}
+
+.computer-hand img {
+    padding-bottom: 30vh;
+    margin-left: -4vw;
+    animation-name: slidecomputer;
+    animation-duration: 1s;
+}
+
+.player-hand {
+    position: absolute;
+    top: 20vh;
+    right: 0vw;
+    width: 36vw;
+    overflow: hidden;
+}
+
+.player-hand img {
+    animation-name: slideplayer;
+    animation-duration: 1s;
+    
+}
+
+@keyframes slideplayer {
+    from {
+	margin-left: 100%;
+    }
+    to {
+	margin-left: 0%;
+    }
+}
+
+
+@keyframes slidecomputer {
+    from {
+	margin-left: -100%;
+    }
+    to {
+	margin-left: -4vw;
+    }
+}
+
+.clicked {
+    box-shadow: 0 0 0 2px #E3EDBF;
+}
+
+button:focus {
+    border: none;
+    outline: 0;
 }

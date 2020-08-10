@@ -3,9 +3,18 @@ const rock = document.querySelector("#rock");
 const paper = document.querySelector("#paper");
 const scissors = document.querySelector("#scissors");
 
+/* selecting player and computer sides for animation */
+const playerside = document.querySelector(".player-side");
+const computerside = document.querySelector(".computer-side");
+
+/* for hand images */
+const computerhand = document.querySelector(".computer-hand")   ;
+const playerhand = document.querySelector(".player-hand");
+console.log(computerhand);
+
 /* adding scores to the footers */
-const playerside = document.querySelector("#player-footer");
-const computerside = document.querySelector("#computer-footer"); 
+const playerfooter = document.querySelector("#player-footer");
+const computerfooter = document.querySelector("#computer-footer"); 
 const pscore = document.createElement("div");
 const cscore = document.createElement("div");
 const you = document.querySelector("#you");
@@ -13,8 +22,8 @@ const you = document.querySelector("#you");
 pscore.classList.add("score");
 cscore.classList.add("score");
 
-computerside.appendChild(cscore);
-playerside.insertBefore(pscore, you);
+computerfooter.appendChild(cscore);
+playerfooter.insertBefore(pscore, you);
 
 /* new game popup at the end of the game */
 const popup = document.querySelector(".popup");
@@ -36,12 +45,30 @@ updatescore(); // adding to the scoreboard
 
 /* calling the playRound function on button click */
 rock.addEventListener("click", function() {
+    
+    rock.classList.remove("clicked");
+    paper.classList.remove("clicked");
+    scissors.classList.remove("clicked");
+
+    rock.classList.add("clicked");
     playRound(1);
 });
 paper.addEventListener("click", function() {
+    
+    rock.classList.remove("clicked");
+    paper.classList.remove("clicked");
+    scissors.classList.remove("clicked");
+
+    paper.classList.add("clicked");
     playRound(2);
 });
 scissors.addEventListener("click", function() {
+    
+    rock.classList.remove("clicked");
+    paper.classList.remove("clicked");
+    scissors.classList.remove("clicked");
+
+    scissors.classList.add("clicked");
     playRound(3);
 });
 
@@ -56,16 +83,24 @@ function playRound(playerMove) {
     let computerMove = computerPlay();
     let win; // winner of this round
 
+    playerhand.innerHTML = `<img src="images/${playerMove}-you.png"></img>`;
+    computerhand.innerHTML = `<img src="images/${computerMove}-comp.png"></img>`;
+    
     /* in case of a draw */
     if (playerMove === computerMove) {
 	win = 'none';
     } else {
+	
 	win = winner(playerMove, computerMove);
 	if (win == 'player') {
 	    playerscore++;
+	    playerside.classList.add("winner");
+	    playerside.addEventListener("transitionend", removeTransition);
 	}
 	else if (win == 'computer') {
 	    computerscore++;
+	    computerside.classList.add("winner");
+	    computerside.addEventListener("transitionend", removeTransition);
 	}
 	
     }
@@ -76,6 +111,10 @@ function playRound(playerMove) {
 	endgame();
 	return;
     }
+}
+
+function removeTransition() {
+    this.classList.remove("winner");
 }
 
 function updateround() {
