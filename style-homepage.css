@@ -7,6 +7,9 @@ html {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    font-family: 'Montserrat', sans-serrif;
+    color: #E3EDBF;
+    font-size: small;
 }
 
 #start-game {
@@ -23,8 +26,18 @@ button {
     color: #25262C;
     border-radius: 20px;
     border: 0px;
+    margin-bottom: 1em;
 }
 
 button:hover {
     transform: scale(1.1);
+}
+
+button:focus {
+    border: none;
+    outline: 0;
+}
+
+p {
+    font-weight: 900;
 }

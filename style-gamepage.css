@@ -132,7 +132,7 @@ footer {
 
 #round {
     position: absolute;
-    top: 0;
+    top: 4px;
     left: 40vw;
     width: 20vw;
     height: 10vh;
